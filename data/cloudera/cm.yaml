@@ -1,0 +1,3 @@
+cloudera::cm_server_host: cm.example.com
+cloudera::install_cmserver: true
+# cloudera::server_keypw: myPassWord

@@ -1,0 +1,81 @@
+cloudera::database_name: scm
+cloudera::db_host: localhost
+cloudera::db_port: 3306
+cloudera::db_type: mysql
+# WORKAROUND: disable root password requiring by scm_create_database.sh
+cloudera::db_pass: '""'
+cloudera::db_user: '""'
+# END WORKAROUND: disable root password requiring by scm_create_database.sh
+cloudera::username: scm
+cloudera::password: scm
+cloudera::install_java: true
+# cloudera::install_jce: true
+mysql::server::databases:
+  amon:
+    charset: utf8
+  metastore:
+    charset: utf8
+  nav:
+    charset: utf8
+  rman:
+    charset: utf8
+  scm:
+    charset: utf8
+  sentry:
+    charset: utf8
+mysql::server::grants:
+  amon@localhost/amon.*:
+    privileges:
+      - ALL
+    table: amon.*
+    user: amon@localhost
+  hive@localhost/metastore.*:
+    privileges:
+      - ALL
+    table: metastore.*
+    user: hive@localhost
+  nav@localhost/nav.*:
+    privileges:
+      - ALL
+    table: nav.*
+    user: nav@localhost
+  rman@localhost/rman.*:
+    privileges:
+      - ALL
+    table: rman.*
+    user: rman@localhost
+  scm@localhost/scm.*:
+    privileges:
+      - ALL
+    table: scm.*
+    user: scm@localhost
+  sentry@localhost/sentry.*:
+    privileges:
+      - ALL
+    table: sentry.*
+    user: sentry@localhost
+mysql::server::override_options:
+  mysqld:
+    # TUNING: possible InnoDB tuning values
+    # innodb_buffer_pool_size: 4G
+    # innodb_file_per_table: 1
+    # innodb_flush_log_at_trx_commit: 2
+    # innodb_flush_method: O_DIRECT
+    # innodb_log_buffer_size: 64M
+    # innodb_log_file_size: 512M
+    # innodb_thread_concurrency: 8
+    max_connections: 550
+    transaction-isolation: READ-COMMITTED
+mysql::server::users:
+  amon@localhost:
+    password_hash: '*4A1243A12C2625553EC0465DD4E640DB056AA07A'
+  hive@localhost:
+    password_hash: '*8AC2E431CC7A9F2C4C0E51A65B8D8175892D9F22'
+  nav@localhost:
+    password_hash: '*993A16D875A9AB1932CC2F57E7DADA76AD35C3B2'
+  rman@localhost:
+    password_hash: '*AEF345BFE495D8E678EA9D3D5708FD110AD2F08E'
+  scm@localhost:
+    password_hash: '*45E6E3C68BDF1AC7EBB5C5A3BCBD5E9437B293BE'
+  sentry@localhost:
+    password_hash: '*280BBCEE7F3B500690296588CF09BB9FB3EEED65'

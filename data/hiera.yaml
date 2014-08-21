@@ -1,0 +1,17 @@
+---
+:hierarchy:
+    # START - TEMPORARY FIX until Puppetlabs releases Vagrant box with Puppet 3.2+
+    - cloudera/%{hostname}
+    - cloudera/%{env}
+    - cloudera/common
+    # END - TEMPORARY FIX until Puppetlabs releases Vagrant box with Puppet 3.2+
+    - %{calling_module}/%{hostname}
+    - %{calling_module}/%{env}
+    - %{calling_module}/common
+    - %{::hostname}
+    - %{::env}
+    - common
+:backends:
+    - yaml
+:yaml:
+    :datadir: 'data'

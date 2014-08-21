@@ -1,0 +1,9 @@
+.bundle
+.cache
+.librarian
+.tmp
+.vagrant
+Gemfile.lock
+Puppetfile.lock
+\#*#
+*.vdi
